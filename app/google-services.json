@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1022683643067",
+    "firebase_url": "https://expense-88537-default-rtdb.firebaseio.com",
+    "project_id": "expense-88537",
+    "storage_bucket": "expense-88537.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022683643067:android:cb2db1c0dbd64941fafd9e",
+        "android_client_info": {
+          "package_name": "smart.budget.expense"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022683643067-2050l3mf42mq99pjsjpk1qkurk73402b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHIu4ESKpvmZasAMBQp8rmlFNztAp9mdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1022683643067-2050l3mf42mq99pjsjpk1qkurk73402b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_date_range"
+        android:title="Choose date range"
+        android:icon="@drawable/icon_calendar_active"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/action_options"
+        android:title="Options"
+        android:icon="@drawable/icon_options"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/action_city"
+        android:title="Cities"
+        android:icon="@drawable/city"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/action_search"
+        android:title="Search"
+        android:icon="@drawable/search"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/action_filter"
+        android:title="filter"
+        app:showAsAction="ifRoom"/>
+</menu>
