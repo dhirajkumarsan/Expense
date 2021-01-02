@@ -7,9 +7,7 @@ public class WalletEntryCategory {
     public String htmlColorCode;
     public String visibleName;
 
-    public WalletEntryCategory() {
-
-    }
+    public WalletEntryCategory() {}
 
     public WalletEntryCategory(String visibleName, String htmlColorCode) {
         this.htmlColorCode = htmlColorCode;

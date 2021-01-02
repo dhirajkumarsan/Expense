@@ -11,13 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FirebaseQueryLiveDataSet<T> extends LiveData<FirebaseElement<ListDataSet<T>>> {
+
     private final Class<T> genericTypeClass;
     private Query query;
     private ValueEventListener listener;
     ListDataSet<T> liveDataSet;
     private List<T> liveDataSetEntries;
     private ArrayList<String> liveDataSetIndexes;
-public FirebaseQueryLiveDataSet(Class<T> genericTypeClass) {
+
+private FirebaseQueryLiveDataSet(Class<T> genericTypeClass) {
     this.genericTypeClass = genericTypeClass;
 }
     public FirebaseQueryLiveDataSet(Class<T> genericTypeClass, Query query) {
@@ -65,6 +67,7 @@ public FirebaseQueryLiveDataSet(Class<T> genericTypeClass) {
 
         @Override
         public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
+
             T item = dataSnapshot.getValue(genericTypeClass);
 
             String key = dataSnapshot.getKey();

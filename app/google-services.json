@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1022683643067-sj0groedd2731rfi018une37683dpm04.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "smart.budget.expense",
+            "certificate_hash": "8343e260587c874e546a22abfaa6234d14bbd107"
+          }
+        },
+        {
           "client_id": "1022683643067-2050l3mf42mq99pjsjpk1qkurk73402b.apps.googleusercontent.com",
           "client_type": 3
         }

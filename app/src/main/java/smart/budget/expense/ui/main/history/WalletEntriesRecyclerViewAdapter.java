@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
 import android.os.Environment;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.collection.LLRBNode;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
@@ -52,13 +54,15 @@ import smart.budget.expense.models.Category;
 import smart.budget.expense.ui.main.history.edit_entry.EditWalletEntryActivity;
 import smart.budget.expense.util.CurrencyHelper;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class WalletEntriesRecyclerViewAdapter extends RecyclerView.Adapter<WalletEntryHolder>  {
 
     private final String uid;
     private final FragmentActivity fragmentActivity;
     private ListDataSet<WalletEntry> walletEntries;
     private ListDataSet<WalletEntry> walletstoreEntries;
-
+Context context;
 
     ViewGroup store;
     WalletEntryHolder holder_store;
@@ -78,7 +82,7 @@ String username = "";
 
     public WalletEntriesRecyclerViewAdapter(FragmentActivity fragmentActivity, String uid) {
 
-        System.out.println("chnanged");
+        System.out.println("changed");
 
         firstUserSync=false;
         if(walletstoreEntries!=null){
@@ -108,7 +112,7 @@ String username = "";
                         public void onChanged(FirebaseElement<ListDataSet<WalletEntry>> element) {
                             if (element.hasNoError()) {
                                 System.out.println("putting wallet entries");
-                                SharedPreferences sharedpreferences = fragmentActivity.getSharedPreferences("preferences", Context.MODE_PRIVATE);
+                                SharedPreferences sharedpreferences = fragmentActivity.getSharedPreferences("preferences", MODE_PRIVATE);
                                 added = sharedpreferences.getBoolean("added",false);
                                 System.out.println(element.getElement().getList());
 if(!added){
@@ -200,6 +204,9 @@ if(!added){
         System.out.println("onCreateViewHolder");
         LayoutInflater inflater = LayoutInflater.from(fragmentActivity);
         View view = inflater.inflate(R.layout.history_listview_row, parent, false);
+
+
+       // view.setBackgroundResource(R.drawable.category_gaming);
         if(a==12){
 
         }
@@ -211,6 +218,7 @@ if(!added){
     public void onBindViewHolder(WalletEntryHolder holder, int position) {
         position_store=position;
         holder_store = holder;
+
         System.out.println("onBindViewHolder");
         String id = walletEntries.getIDList().get(position);
         WalletEntry walletEntry = walletEntries.getList().get(position);
@@ -228,7 +236,17 @@ if(!added){
             holder.moneyTextView.setText(CurrencyHelper.formatCurrency(user.currency, walletEntry.balanceDifference));
             holder.moneyTextView.setTextColor(ContextCompat.getColor(fragmentActivity,
                     walletEntry.balanceDifference < 0 ? R.color.primary_text_expense : R.color.primary_text_income));
-
+            int count=0;
+          SharedPreferences sharedPreferences=fragmentActivity.getSharedPreferences(id,MODE_PRIVATE);
+           count=sharedPreferences.getInt("counter",0);
+       // Toast.makeText(fragmentActivity, ""+count, Toast.LENGTH_SHORT).show();
+            if(count==1){
+                holder.view.setBackgroundColor(Color.GREEN);
+            }else if(count>=2){
+                holder.view.setBackgroundColor(Color.RED);
+        }else{
+                holder.view.setBackgroundColor(Color.WHITE);
+            }
             holder.view.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
@@ -243,9 +261,12 @@ if(!added){
             holder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     Intent intent = new Intent(fragmentActivity, EditWalletEntryActivity.class);
                     intent.putExtra("wallet-entry-id", id);
+                    intent.putExtra("date",holder.dateTextView.getText().toString());
                     fragmentActivity.startActivity(intent);
+
                 }
             });
 
@@ -258,7 +279,7 @@ if(!added){
         System.out.println("count");
 
 
-        SharedPreferences sharedpreferences = fragmentActivity.getSharedPreferences("preferences", Context.MODE_PRIVATE);
+        SharedPreferences sharedpreferences = fragmentActivity.getSharedPreferences("preferences", MODE_PRIVATE);
         cityi = sharedpreferences.getString("city","Everywhere");
         username=sharedpreferences.getString("username","");
 //System.out.println("get count");
@@ -379,6 +400,10 @@ else {
                                 .child("wallet-entries").child(uid).child("default").child(id).removeValue();
                         user.wallet.sum -= balanceDifference;
                         UserProfileViewModelFactory.saveModel(uid, user);
+                        SharedPreferences sharedPreferences=fragmentActivity.getSharedPreferences(id,MODE_PRIVATE);
+                        SharedPreferences.Editor editor=sharedPreferences.edit();
+                        editor.clear();
+                        editor.apply();
                         dialog.dismiss();
                     }
 
@@ -401,7 +426,6 @@ else {
                     }
                 })
                 .create().show();
-
     }
 
     public void setDateRange(Calendar calendarStart, Calendar calendarEnd) {

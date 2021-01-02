@@ -19,7 +19,7 @@ public class WalletEntry {
     public int installment;
     public long last_emi;
 
-
+    public WalletEntry(){}
     public WalletEntry(String categoryID, String name, long timestamp, long balanceDifference, String mobile , String village , String description,String city,int install_duration,int installments,long last_emi ) {
         this.categoryID = categoryID;
         this.name = name;
