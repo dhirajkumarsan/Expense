@@ -21,12 +21,13 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
 
         switch (position) {
-            case 0:
+            case 2:
                 return HomeFragment.newInstance();
             case 1:
                 return HistoryFragment.newInstance();
-            case 2:
+            case 0:
                 return StatisticsFragment.newInstance();
+
         }
         return null;
     }
@@ -39,13 +40,13 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
-            case 0:
+            case 2 :
                 return HomeFragment.TITLE;
 
             case 1:
                 return HistoryFragment.TITLE;
 
-            case 2:
+            case 0:
                 return StatisticsFragment.TITLE;
         }
         return super.getPageTitle(position);

@@ -48,7 +48,7 @@ import smart.budget.expense.ui.options.FilterActivity;
 import smart.budget.expense.ui.options.OptionsActivity;
 
 public class HistoryFragment extends BaseFragment {
-    public static final CharSequence TITLE = "History";
+    public static final CharSequence TITLE = "Khatas";
     Calendar calendarStart;
     Calendar calendarEnd;
     private RecyclerView historyRecyclerView;

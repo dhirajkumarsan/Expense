@@ -45,7 +45,7 @@ public class HomeFragment extends BaseFragment {
     private User user;
     private ListDataSet<WalletEntry> walletEntryListDataSet;
 
-    public static final CharSequence TITLE = "Home";
+    public static final CharSequence TITLE = "Charts";
     private Gauge gauge;
     private TopCategoriesAdapter adapter;
     private ArrayList<TopCategoryListViewModel> categoryModelsHome;
